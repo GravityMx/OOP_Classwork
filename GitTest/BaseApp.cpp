@@ -35,7 +35,7 @@ int CoreLoop()
     string input;
 
     cout << "Enter equation: ";
-    std::getline(cin, input); 
+    std::getline(cin, input); // Reading input as a single line
 
     istringstream iss(input);
     vector<string> elements;
