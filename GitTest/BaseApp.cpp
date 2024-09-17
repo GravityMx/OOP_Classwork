@@ -7,27 +7,21 @@ using namespace std;
 
 float Calculate(float num1, float num2, char opp)
 {
-    if (opp == '+')
+    switch (opp)
     {
+    case '+':
         return num1 + num2;
-    }
-    else if (opp == '-')
-    {
+    case '-':
         return num1 - num2;
-    }
-    else if (opp == '*')
-    {
+    case '*':
         return num1 * num2;
-    }
-    else if (opp == '/')
-    {
+    case '/':
         return num1 / num2;
-    }
-    else
-    {
-        cout << "BAD OPPERATOR";
+    default:
+        cout << "BAD OPERATOR";
         return 0;
     }
+
 }
 
 int CoreLoop()
@@ -35,7 +29,7 @@ int CoreLoop()
     string input;
 
     cout << "Enter equation: ";
-    std::getline(cin, input); // Reading input as a single line
+    std::getline(cin, input); 
 
     istringstream iss(input);
     vector<string> elements;
