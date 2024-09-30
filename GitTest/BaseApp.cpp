@@ -4,6 +4,8 @@
 
 using namespace std;
 
+//Create prototype funcitions
+
 float calcDistance(float x1, float y1, float x2, float y2);
 
 float calcRadius(float x1, float y1, float x2, float y2);
@@ -16,15 +18,16 @@ float inputWithPrompt(string str);
 
 void outputWithPrompt(string str, float outNum);
 
-// Create a globally used PI value required by assinment
+// Create the globally used PI value required by assinment (I would make it static but I would probibly get points off for using techquines that have not been taught yet)
+
 float PI = 3.1416;
 
 int main()
 {
-    // Inisialize FLoat Variables
+    // Inisialize Float Variables
     float x1, y1, x2, y2, radius, circum, area;
 
-    // Do iniscialization for pointers and references 
+    // Do iniscialization for pointers and references (I would use vector2's via SFML but I would probibly get points off for using techquines that have not been taught yet)
 
     float& circumRef = circum;
 
@@ -51,27 +54,31 @@ int main()
     outputWithPrompt("The area of the circle is: ", area);
 }
 
+// Calcualtes the radius of a circle by getting the distance between a point on the edge of the circle and the center point of the circle
 float calcRadius(float x1, float y1, float x2, float y2)
 {
     return calcDistance(x1, y1, x2, y2);
 }
 
+// Calcualtes distance between two points
 float calcDistance(float x1, float y1, float x2, float y2)
 {
     return sqrtf(powf(x1 - x2, 2) + powf(y1 - y2, 2));
 }
 
+// Calcualtes the circumference of a circle given the radius
 void calcCircumference(float radius, float& out)
 {
     out = radius * PI * 2;
 }
 
+// Calcualtes the area of a circle given the radius
 void calcArea(float radius, float* out)
 {
     *out = PI * powf(radius, 2);
 }
 
-
+// Prints a statement that prompts the user to input a float and returns it
 float inputWithPrompt(string str)
 {
     cout << str;
@@ -83,6 +90,7 @@ float inputWithPrompt(string str)
     return output;
 }
 
+// Prints a statement that contains a string appended with a float and ending with the creation of a new line
 void outputWithPrompt(string str, float outNum)
 {
     cout << str << outNum << "\n";
