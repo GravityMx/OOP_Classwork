@@ -17,7 +17,24 @@ void outputWithPrompt(string str, float out);
 
 int main()
 {
-    cout << "Hello World!\n";
+    // Initialize float variables
+    float priceY2, priceY1, priceY0, rate2_1, rate1_0;
+
+    // Initialize references for each variable
+    float& priceY2Ref = priceY2;
+    float& priceY1Ref = priceY1;
+    float& priceY0Ref = priceY0;
+    float& rate2_1Ref = rate2_1;
+    float& rate1_0Ref = rate1_0;
+
+    // Get all prices
+    inputAllPrices(priceY2, priceY1, priceY0);
+
+    // Calculate all rates
+    calculateAllRates(priceY2, priceY1, priceY0, rate2_1, rate1_0);
+
+    // Output all rates
+    outputAllRates(rate2_1, rate1_0);
 }
 
 void inputAllPrices(float& priceY2, float& priceY1, float& priceY0)
@@ -59,4 +76,11 @@ float inputWithPrompt(string str)
     return input;
 }
 
-void outputWithPrompt(string str)
+void outputWithPrompt(string str, float out)
+{
+    // Make the output decimal into a percentage to look nicer
+
+    out *= 100;
+
+    cout << str << out << "%\n";
+}
