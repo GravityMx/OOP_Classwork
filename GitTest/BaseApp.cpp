@@ -6,72 +6,63 @@
 
 using namespace std;
 
-void FillTable(ifstream& file, float (&table)[5][7], string (&names)[5]);
+// Struct stores runners name and daily miles
+struct Runner {
+    string name;
+    float miles[7];
+    float total;
+};
 
-void ComputeTotals(float table[5][7], float(&totals)[5]);
+void FillTable(ifstream& file, Runner(&runners)[5]);
 
-void OutputFullTable(string names[5], float table[5][7], float totals[5]);
+void ComputeTotals(Runner(&runners)[5]);
+
+void OutputFullTable(Runner runners[5]);
 
 void OutputTopRow(int spacing);
 
-
 int main()
 {
-    // Initialize main variables
-    string names[5];
+    // Initialize array of Runner structs
+    Runner runners[5];
 
-    float table[5][7];
-
-    float totals[5];
-
-
-    // Reference variables
-    string(&refNames)[5] = names;  
-
-    float(&refTable)[5][7] = table;       
-
-    float(&refTotals)[5] = totals;        
-
-
-    //String that holds file location
+    // String that holds file location
     string filePath = "C:/Users/kenda/Desktop/CollegeWork/ObjectOrientedProgramming/runners.txt";
-
 
     // Open the file
     ifstream file(filePath);
 
-
-    // Fill the table and name variables using the given file
-    FillTable(file, refTable, refNames);
+    // Fill the runners array using the given file
+    FillTable(file, runners);
 
     // Compute the total run time for each runner
-    ComputeTotals(table, refTotals);
+    ComputeTotals(runners);
 
     // Print results to the screen
-    OutputFullTable(names, table, totals);
+    OutputFullTable(runners);
 
     // Close the file
     file.close();
 }
 
-void FillTable(ifstream& file, float(&table)[5][7], string(&names)[5])  // Pass by reference
+void FillTable(ifstream& file, Runner(&runners)[5])
 {
     int y = 0, x = 0;
     string line, word;
-    
+
     while (getline(file, line))
     {
         istringstream iss(line);
 
         iss >> word;
 
-        names[y] = word;
+        runners[y].name = word;
 
         while (x < 7)
         {
             iss >> word;
 
-            table[y][x] = stof(word);
+            runners[y].miles[x] = stof(word);
 
             x++;
         }
@@ -81,68 +72,50 @@ void FillTable(ifstream& file, float(&table)[5][7], string(&names)[5])  // Pass 
     }
 }
 
-void ComputeTotals(float table[5][7], float(&totals)[5])
+void ComputeTotals(Runner(&runners)[5])
 {
-    int x = 0, y = 0;
-    float total = 0;
-
-    while (y < 5)
+    for (int y = 0; y < 5; y++)
     {
-        while (x < 7)
+        float total = 0;
+
+        for (int x = 0; x < 7; x++)
         {
-            total += table[y][x];
-            x++;
+            total += runners[y].miles[x];
         }
 
-        // Set the total for this row
-        totals[y] = total;
-
-        // Reset total and x
-        total = 0;
-        x = 0;
-
-        // Increment Y
-        y++;
-        
+        // Set the total for this runner
+        runners[y].total = total;
     }
 }
 
-void OutputFullTable(string names[5], float table[5][7], float totals[5])
+void OutputFullTable(Runner runners[5])
 {
-    int y = 0, x = 0, fixedWidth = 14;
+    int fixedWidth = 14;
 
     OutputTopRow(fixedWidth);
 
-    while (y < 5)
+    for (int y = 0; y < 5; y++)
     {
         // Start table row with name
-        cout << setw(fixedWidth) << names[y];
+        cout << setw(fixedWidth) << runners[y].name;
 
-        while (x < 7)
+        for (int x = 0; x < 7; x++)
         {
-            cout << setw(fixedWidth) << table[y][x];
-            x++;
+            cout << setw(fixedWidth) << runners[y].miles[x];
         }
 
-        // Print this persons total miles for the week
-        cout << setw(fixedWidth) << totals[y];
+        // Print this runner's total miles for the week
+        cout << setw(fixedWidth) << runners[y].total;
 
-        // Print this persons average miles per day for the week
-        cout << setw(fixedWidth) << (totals[y] / 7);
+        // Print this runner's average miles per day for the week
+        cout << setw(fixedWidth) << (runners[y].total / 7);
 
-        // Set x to 0 and increment y
-        x = 0;
-        y++;
-
-        //Start a new line, double spaced
+        // Start a new line, double spaced
         cout << endl << endl;
     }
-
-
 }
 
 void OutputTopRow(int spacing)
 {
     cout << setw(spacing) << "Name" << setw(spacing) << "Day 1" << setw(spacing) << "Day 2" << setw(spacing) << "Day 3" << setw(spacing) << "Day 4" << setw(spacing) << "Day 5" << setw(spacing) << "Day 6" << setw(spacing) << "Day 7" << setw(spacing) << "Total" << setw(spacing) << "Average" << endl << endl;
 }
-
