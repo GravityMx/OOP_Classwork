@@ -18,5 +18,13 @@
     <ClCompile Include="BaseApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="dayType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="dayType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
