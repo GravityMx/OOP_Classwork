@@ -1,4 +1,6 @@
 #include <iostream>
+#include "dateSingle.h"
+#include "dateType.h"
 #include <ostream>
 #include "dateSingle.h"
 #include "dateType.h"
