@@ -28,6 +28,8 @@ public:
     // Casting operator to int
     operator int() const;
 
+    bool isValid(int) const;
+
     // Link to another DateSingle
     void Link(DateSingle* newLinkDateSingle);
 };
