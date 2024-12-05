@@ -1,10 +1,12 @@
 #include <iostream>
+
+using namespace std;
+
+#include "Shape.h"
 #include "Circle.h"
 #include "Rectangle.h"
 #include "Square.h"
 #include <vector>
-
-using namespace std;
 
 int main() {
     // Create some shapes
