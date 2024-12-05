@@ -1,3 +1,4 @@
+#pragma once
 #include <string>
 
 using namespace std;
@@ -22,5 +23,3 @@ public:
     // Virtual destructor for cleanup
     virtual ~Shape() {}
 };
-
-#endif

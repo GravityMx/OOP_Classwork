@@ -132,7 +132,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Shape.h" />
-    <ClInclude Include="..\Circle.h" />
+    <ClInclude Include="..\Circle.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
+    </ClInclude>
     <ClInclude Include="..\Rectangle.h" />
     <ClInclude Include="..\Square.h" />
   </ItemGroup>
